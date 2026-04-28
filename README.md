@@ -46,14 +46,10 @@
     uvicorn api.app.main:app --reload
     ```
 
-7. **Test the health endpoint**
+7. **Swagger Documentation**
 
     ```bash
-    GET http://127.0.0.1:8000/health
+    GET http://127.0.0.1:8000/docs
     ```
-    Expected response:
-        {
-            "status": "ok"
-        }
     
     
