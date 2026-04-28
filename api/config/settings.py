@@ -1,6 +1,7 @@
 from pydantic_settings import BaseSettings
 from pydantic import computed_field
 from pydantic import SecretStr
+from pydantic import ConfigDict
 
 
 class Settings(BaseSettings):
@@ -26,6 +27,12 @@ class Settings(BaseSettings):
     # Documents storage
     DOCUMENTS_DIR: str = "documents"
 
+    # Pydantic v2 config
+    model_config = ConfigDict(
+        env_file=".env",
+        extra="ignore"
+    )
+
     @computed_field
     def DATABASE_URL(self) -> str:
         return (
@@ -33,9 +40,5 @@ class Settings(BaseSettings):
             f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
         )
 
-    class Config:
-        env_file = ".env"
-        extra = "ignore"  # allow additional environment variables
-
-
+   
 settings = Settings()
