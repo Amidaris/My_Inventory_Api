@@ -4,7 +4,7 @@
 1.  **Clone the repository:**
 
     ```bash
-    git clone git@github.com:Amidaris/My_Invoice_Api.git
+    git clone git@github.com:Amidaris/My_Inventory_Api.git
     ```
 
 2.  **Create a virtual environment:**
@@ -46,7 +46,7 @@
     uvicorn api.app.main:app --reload
     ```
 
-7. **Swagger Documentation**
+7. **Documentation**
 
     ```bash
     http://127.0.0.1:8000/docs
