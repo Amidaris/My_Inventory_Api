@@ -122,7 +122,7 @@ def get_clients(
 ):
     clients, total = list_clients(
         db=db,
-        owner_id=current_user.id,
+        user_id=current_user.id,
         limit=limit,
         offset=offset
     )
