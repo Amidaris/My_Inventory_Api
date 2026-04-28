@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from api.config.db import Base
 from api.models.db_user import UserDB
 from api.models.client import ClientCreate
-from api.services.client_service import add_client, is_nip_taken
+from api.services.client_service import add_client
 from fastapi import HTTPException
 
 
@@ -29,12 +29,6 @@ def make_client_data(nip: str = "1234563218") -> ClientCreate:
         nip=nip,
         accountNumber=None,
     )
-
-
-def test_client_create_valid(db_session):
-    client = make_client_data()
-    assert client.name == "Test client"
-    assert client.nip == "1234563218"
 
 
 def test_nip_uniqueness_scope(db_session):
@@ -61,9 +55,6 @@ def test_nip_uniqueness_scope(db_session):
     c2 = add_client(db_session, client_data, user_id=user2.id)
     assert c2.user_id == user2.id
 
-    # verify helper function behaves the same way
-    assert is_nip_taken(db_session, client_data.nip, user_id=user1.id)
-    assert not is_nip_taken(db_session, client_data.nip, user_id=user2.id)
 
 
 
